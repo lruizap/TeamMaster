@@ -3,6 +3,18 @@ require_once 'Model.php';
 
 class EquipoM extends Model {
 
+    public function cargarTodosLosEquipos() {
+        $sql = "SELECT * FROM equipos";
+        $stmt = $this->executeQuery($sql);
+
+        if ($stmt) {
+            $equipos = $stmt->fetchAll();
+            return $equipos ?: -1;
+        }
+        return -1;
+    }
+
+
     // 📌 Cargar los equipos que ha entrenado un entrenador
     public function cargarEquiposEntrenador($idEntrenador) {
         $sql = "SELECT * FROM equipos WHERE id_entrenador = ?";
